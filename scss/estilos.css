@@ -1,0 +1,70 @@
+@font-face {
+  font-family: miFuente;
+  src: url(../font/Righteous-Regular.ttf); }
+h1, a {
+  font-family: miFuente; }
+
+.carousel-control-next, .carousel-control-prev {
+  width: 12%; }
+
+.bg-primary {
+  background-color: #6f14f1 !important; }
+
+.text-primary {
+  color: #6f14f1 !important; }
+
+.border-primary {
+  border-color: #540bbd !important; }
+
+.btn-primary {
+  transition: .3s;
+  background-color: #6f14f1 !important;
+  border-color: #38087e; }
+
+.btn-primary:hover {
+  background-color: #430996 !important; }
+
+.btn-primary:active {
+  transition: none;
+  background-color: #9b5cf5 !important;
+  border-color: #38087e; }
+
+.nav-link, footer {
+  color: whitesmoke; }
+
+.nav-link:hover {
+  transition: .5s;
+  color: #9b5cf5 !important; }
+
+.active {
+  --bs-navbar-active-color: #6f14f1; }
+
+.card {
+  transition: all .3s; }
+
+.card:hover {
+  box-shadow: 0 0 7px 7px #aa74f7 !important; }
+
+.fixed-height-card {
+  height: 240px;
+  max-height: 240px; }
+
+.fixed-height-info {
+  height: 180px;
+  max-height: 180px;
+  overflow: hidden; }
+
+.card-title {
+  height: 50px;
+  overflow: hidden; }
+
+input[type=number] {
+  text-align: center;
+  width: 50px; }
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0; }
+
+/*# sourceMappingURL=estilos.css.map */

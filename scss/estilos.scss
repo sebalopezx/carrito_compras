@@ -1,0 +1,120 @@
+// PATRON DE COLORES
+$principal:#6f14f1;
+$secundario: #212529;
+$texto: whitesmoke;
+// color: #212529;
+
+
+// FUENTE
+@font-face {
+    font-family: miFuente;
+    src: url(../font/Righteous-Regular.ttf);
+}
+h1,a{
+    font-family: miFuente;
+}
+
+.carousel-control-next, .carousel-control-prev{
+    width: 12%;
+}
+
+
+// FONDO
+.bg-primary{
+    background-color: $principal !important;
+}
+// TITULOS Y LETRA
+.text-primary{
+    color: $principal !important;
+}
+// BORDE
+.border-primary{
+    border-color: darken($principal,12%) !important;
+}
+
+
+
+// BOTONES
+.btn-primary{
+    transition: .3s;
+    background-color: $principal !important;
+    border-color: darken($principal,25%);
+}
+.btn-primary:hover{
+    background-color: darken($principal,20%) !important;
+}
+.btn-primary:active{
+    transition: none;
+    background-color: lighten($principal, $amount: 15%) !important;
+    border-color: darken($principal,25%) !important;
+}
+
+
+
+// NAVEGADOR LINKS
+.nav-link,footer{
+    color: $texto;
+}
+.nav-link:hover{
+    transition: .5s;
+    color: darken($principal,1%) !important;
+}
+.navbar-nav .nav-link.active {
+    color: lighten($principal, $amount: 15%) ;
+    // --bs-navbar-active-color: #6f14f1 ;
+
+}
+
+
+// CARD  Hover de productos
+.card{
+    transition: all .3s;
+}
+.card:hover{
+    // transform: scale(1.01);
+    box-shadow: 0 0 7px 7px lighten($principal, $amount: 20%) !important;
+}
+.fixed-height-card{
+    height: 240px;
+    max-height: 240px;
+}
+.fixed-height-info{
+    height: 180px;
+    max-height: 180px;
+    overflow: hidden;
+}
+.card-title{
+    height: 50px;
+    overflow: hidden;
+}
+
+.hide{
+    display: none;
+}
+
+// input de cantidad por producto
+input[type=number]{
+    text-align: center;
+    width: 50px;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+// FORMULARIO
+#registro .input-group-text {
+    display: flex;
+    align-items: center;
+    height: 50px;
+}
+  
+#registro .input-group-text label {
+    width: 130px; 
+}
+
+#registro .input-group-text input {
+    flex: 1;
+    text-align: left;
+}

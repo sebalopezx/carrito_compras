@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="images/m.JPEG">
+    <!-- BOOTSTRAP 5 -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- BOOTSTRAP 5 PERSONALIZACIÓN -->
+    <link rel="stylesheet" href="css/estilos.css">
+    <!-- ICONOS BOOTSTRAP 5 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+ 
+    <title>Proyecto?</title>
+</head>
+
+<body class="bg-light d-flex flex-column min-vh-100 mt-5">
+  
+    <!-- NAVEGADOR -->
+    <nav class="navbar navbar-dark bg-dark navbar-expand-md fixed-top ">
+        <div class="container ">
+            <a href="home.html" class="navbar-brand">
+                <img src="images/logo2.JPG" alt="Logo" width="110px" height="50px" class="img-fluid ">
+            </a>
+
+            <button type="button" class="navbar-toggler ms-auto p-2 px-3 mx-2" data-bs-toggle="collapse" data-bs-target="#menu-principal"  aria-expanded="false" aria-controls="menu-principal" aria-label="boton menu principal" >  
+                <i class="bi bi-list"></i>
+            </button>
+
+            <button type="button" class="navbar-toggler p-2 px-3 mx-2 position-relative"  aria-controls="carrito" aria-label="boton carrito">
+                <a href="carrito.html"><i class="bi bi-cart-fill"></i><span class="badge rounded-pill bg-secondary position-absolute start-100 translate-middle ">0</span></a>
+            </button>
+
+            <div class="collapse navbar-collapse" id="menu-principal">
+                <ul class="navbar-nav ms-auto ">
+                    <li class="nav-item "><a href="home.html" class="nav-link">Inicio</a></li>
+                    <li class="nav-item "><a href="productos.html" class="nav-link">Productos</a></li>
+                    <li class="nav-item "><a href="nosotros.html" class="nav-link ">Nosotros</a></li>
+                    <li class="nav-item d-none d-md-flex"><a href="carrito.html" class="nav-link position-relative">
+                        <i class="bi bi-cart-fill"></i> Ver Carrito <span class="badge rounded-pill bg-secondary position-absolute start-100 translate-middle">0</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- TITULO -->
+    <!-- <div class="container mt-5 p-3">
+        <h1 class="text-primary text-center">PRODUCTOS</h1>
+    </div> -->
+
+    <br>
+    <!-- ALERT DE CARRITO -->
+    <section class="container text-center p-2 p-sm-4 my-4 mt-2 border border-primary rounded shadow-lg bg-primary">
+        <br>
+        <div class="col-12 col-sm-8 offset-0 offset-sm-2 alert alert-success"
+        id="alertCarrito"> 
+            <button class="btn-badge btn btn-info rounded-pill mb-2">
+                Ver Carrito <span id="badgeCarrito" class="badge bg-secondary">0</span>
+            </button>
+            <p>Total del carrito: <strong>$0</strong></p>
+        </div>
+
+        <!-- LISTADO DE PRODUCTOS -->
+        <h1 class="text-light text-center mb-4" id="">Comestibles</h1>
+        <section id="comestibles" class="row g-3"></section>   
+
+         <!-- BEBESTIBLES -->
+        <h1 class="text-light text-center mb-4" id="">Bebestibles</h1>
+        <section id="bebestibles" class="row g-3"></section>   
+            <!-- <section id="comestibles" class="row g-3"></section> -->          
+
+    </section>
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="footer bg-dark text-light p-3 m-0 text-center mt-auto py-3">
+        <p class="">Eva 2 Front End</p>
+        <p class="">~ Sebastián López ~</p>
+    </footer>
+
+    <!-- BOOTSTRAP 5 - JS - JQUERY - POPPER -->
+    <script src="/js/productos.js"></script>
+    <script src="/js/jquery-3.7.0.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
