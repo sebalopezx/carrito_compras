@@ -59,6 +59,9 @@ document.addEventListener("click", (event) => {
 
 
 
+
+
+
 // PRODUCTOS
 
 // INCREMENTO y DECREMENTO de cantidad de productos
@@ -94,16 +97,40 @@ document.addEventListener("DOMContentLoaded", function () {
   
 
 
+
 // -------------------------------------------------------------------------------------
 
 // AÑADIR PRODUCTOS AL ALERT DE CARRITO
-// let alertCarrito = document.getElementById("alertCarrito").classList.add("hide");
 let carrito = {};
+let carritoEnLocalStorage = localStorage.getItem("carrito");
+
+
+// Cargar productos del carrito desde localStorage
+if (carritoEnLocalStorage) {
+    carrito = JSON.parse(localStorage.getItem("carrito"));
+    cantidadProductosEnCarrito = obtenerCantidadTotalCarrito(); // Object.keys(carrito).length;
+
+    // Actualizar el contenido del badge en la barra de navegación
+    const badgeCarritoMenu = document.querySelector(".badgeMenu");
+    const badgeCarritoMenu2 = document.querySelector(".badgeMenu2");
+    if(badgeCarritoMenu){
+        badgeCarritoMenu.textContent = cantidadProductosEnCarrito.toString();
+    }
+    if(badgeCarritoMenu2){
+        badgeCarritoMenu2.textContent = cantidadProductosEnCarrito.toString();
+    }
+
+    actualizarCarritoHTML(); // Actualizar la visualización del carrito
+}
+  
+
 function agregarComestibleAlCarrito(i) {
     let cantidad = document.getElementById(`comestible${i}`).value;
+
     if (cantidad != 0){
-        const nombreProducto = COMESTIBLES[i][1];
-        const precioProducto = COMESTIBLES[i][2];
+        const imgProducto = COMESTIBLES[i].imagen;
+        const nombreProducto = COMESTIBLES[i].nombre;
+        const precioProducto = COMESTIBLES[i].precio;
 
         if (carrito.hasOwnProperty(nombreProducto)) {
             // Actualizar la cantidad si el producto ya existe en el carrito
@@ -111,19 +138,31 @@ function agregarComestibleAlCarrito(i) {
         } else {
             // Agregar el producto al carrito
             carrito[nombreProducto] = {
+                imagen: imgProducto,
+                nombre: nombreProducto,
                 cantidad: parseInt(cantidad),
                 precio: parseInt(precioProducto),
             };
+
         };
         actualizarCarritoHTML(); // Actualizar el contenido del carrito
+
+        // LOCAL STORAGE
+        if (Object.keys(carrito).length === 0) {
+            localStorage.removeItem("carrito");
+        } else {
+            localStorage.setItem("carrito", JSON.stringify(carrito));
+        }
+
     }; 
 };
 
 function agregarBebestibleAlCarrito(i) {
     let cantidad = document.getElementById(`bebestible${i}`).value;
     if (cantidad != 0){
-        const nombreProducto = BEBESTIBLES[i][1];
-        const precioProducto = BEBESTIBLES[i][2];
+        const imgProducto = BEBESTIBLES[i].imagen;
+        const nombreProducto = BEBESTIBLES[i].nombre;
+        const precioProducto = BEBESTIBLES[i].precio;
 
         // hasOwnProperty devuelve un booleano para indicar si existe o no el producto en el alert
         if (carrito.hasOwnProperty(nombreProducto)) {
@@ -132,25 +171,36 @@ function agregarBebestibleAlCarrito(i) {
         } else {
             // Agregar el producto al carrito
             carrito[nombreProducto] = {
+                imagen: imgProducto,
+                nombre: nombreProducto,
                 cantidad: parseInt(cantidad),
                 precio: precioProducto,
             };
         };
+        
         actualizarCarritoHTML(); // Actualizar la visualización del carrito
+
+        // LOCAL STORAGE
+        if (Object.keys(carrito).length === 0) {
+            localStorage.removeItem("carrito");
+        } else {
+            localStorage.setItem("carrito", JSON.stringify(carrito));
+        }
     };
 };
 
 function actualizarCarritoHTML() {
     const carritoElement = document.getElementById("alertCarrito");
-    const btnBadge = carritoElement.querySelector(".btn-badge");
+    const btnBadge = document.getElementById("btn-badge");
 
     let totalCarrito = 0;
-    let contenidoHTML = btnBadge.outerHTML; // Mantener el badge en el contenido
-    console.log(contenidoHTML);
+    if (btnBadge) {
+        var contenidoHTML = btnBadge.parentNode.outerHTML; // Mantener el badge en el contenido
+    };
 
     for (const producto in carrito) {
-        console.log(`Producto ${producto}`);
-        console.log(`Carrito ${carrito}`, carrito);
+        // console.log(`Producto ${producto}`);
+        // console.log(`Carrito ${carrito}`, carrito);
         let cantidad = carrito[producto].cantidad;
         let precio = carrito[producto].precio;
         let subtotal = cantidad * precio;
@@ -168,11 +218,15 @@ function actualizarCarritoHTML() {
     let totalCarritoCLP = formatoCLP(totalCarrito);
     contenidoHTML += `<p>Total del carrito: <strong>${totalCarritoCLP}</strong></p>`;
     carritoElement.innerHTML = contenidoHTML;
+    
     actualizarBadgeCarrito(); // Actualizar solo el badge del carrito
 };
 
 function actualizarBadgeCarrito() {
     const badge = document.getElementById("badgeCarrito");
+    const badgeCarritoMenu = document.querySelector(".badgeMenu");
+    const badgeCarritoMenu2 = document.querySelector(".badgeMenu2");
+
     let nuevaCantidad = 0;
 
     for (const producto in carrito) {
@@ -180,6 +234,8 @@ function actualizarBadgeCarrito() {
     };
 
     badge.textContent = nuevaCantidad;
+    badgeCarritoMenu.textContent = nuevaCantidad.toString();
+    badgeCarritoMenu2.textContent = nuevaCantidad.toString();
 };
 
 
@@ -189,12 +245,35 @@ function eliminarProductoDelAlert(nombreProducto) {
         let cantidad = carrito[nombreProducto].cantidad;
         if (cantidad > 1) {
             carrito[nombreProducto].cantidad -= 1;
+            localStorage.setItem("carrito", JSON.stringify(carrito));
         } else {
             delete carrito[nombreProducto];
+            localStorage.setItem("carrito", JSON.stringify(carrito));
         };
         actualizarCarritoHTML();
     };
 };
+
+
+
+
+// CARRITO DE COMPRAS CON LOCAL STORAGE
+
+function obtenerCantidadTotalCarrito() {
+    let cantidadTotal = 0;
+    // Obtener los datos del Local Storage y calcular la cantidad total
+    if (carritoEnLocalStorage) {
+        const carrito = JSON.parse(carritoEnLocalStorage);
+      
+        for (const producto in carrito) {
+            if (carrito.hasOwnProperty(producto) && typeof carrito[producto].cantidad === 'number') {
+                cantidadTotal += carrito[producto].cantidad;
+            }
+        }
+    }
+    return parseInt(cantidadTotal);
+}
+
 
 
 
@@ -266,19 +345,7 @@ function insertNewRecord(data){
                        <a onClick="onDelete(this)" class="btn btn-danger btn-sm">Eliminar</a>`;
 };
 
-// function resetForm(){
-//     document.getElementById("nombre").value = "";
-//     document.getElementById("correo").value = "";
-//     document.getElementById("telefono").value = "";
-//     document.getElementById("domicilio").value = "";
-//     document.getElementById("numeroDomicilio").value = "";
-//     selectedRow = null;
-//     document.getElementById("nombre").classList.remove("is-invalid","is-valid");
-//     document.getElementById("correo").classList.remove("is-invalid","is-valid");
-//     document.getElementById("telefono").classList.remove("is-invalid","is-valid");
-//     document.getElementById("domicilio").classList.remove("is-invalid","is-valid");
-//     document.getElementById("numeroDomicilio").classList.remove("is-invalid","is-valid");
-// }
+
 function resetForm() {
     const valores = ['nombre', 'correo', 'telefono', 'domicilio', 'numeroDomicilio'];
 
@@ -317,59 +384,6 @@ function onDelete(td){
     };
 };
 
-// function validate(){
-//     let isValid = true;
-
-//     // Validación del campo "Nombre"
-//     let nombreInput = document.getElementById("nombre");
-//     if (nombreInput.value.trim() === "") {
-//         nombreInput.classList.add("is-invalid");
-//         isValid = false;
-//     } else {
-//         nombreInput.classList.remove("is-invalid");
-//     }
-
-//     // Validación del campo "Correo"
-//     let correoInput = document.getElementById("correo");
-//     let correoValue = correoInput.value.trim();
-//     if (correoValue === "") {
-//       correoInput.classList.add("is-invalid");
-//       isValid = false;
-//     } else if (!validateEmail(correoValue)) {
-//       correoInput.classList.add("is-invalid");
-//       isValid = false;
-//     } else {
-//       correoInput.classList.remove("is-invalid");
-//     }
-
-//     // Validación del campo "Teléfono"
-//     let telefonoInput = document.getElementById("telefono");
-//     if (telefonoInput.value.trim() === "") {
-//         telefonoInput.classList.add("is-invalid");
-//         isValid = false;
-//     } else {
-//         telefonoInput.classList.remove("is-invalid");
-//     }
-
-//     // Validación del campo "Domicilio"
-//     let domicilioInput = document.getElementById("domicilio");
-//     if (domicilioInput.value.trim() === "") {
-//         domicilioInput.classList.add("is-invalid");
-//         isValid = false;
-//     } else {
-//         domicilioInput.classList.remove("is-invalid");
-//     }
-
-//     // Validación del campo "Número de Domicilio"
-//     let numeroDomicilioInput = document.getElementById("numeroDomicilio");
-//     if (numeroDomicilioInput.value.trim() === "") {
-//         numeroDomicilioInput.classList.add("is-invalid");
-//         isValid = false;
-//     } else {
-//         numeroDomicilioInput.classList.remove("is-invalid");
-//     }
-//     return isValid;
-// }
 
 function validateEmail(email) {
     // Expresión regular para validar el formato de correo electrónico
@@ -391,46 +405,36 @@ document.querySelectorAll(".needs-validation .form-control").forEach(function (i
 });
 
 
-//     isValid = true;
-//     if(document.getElementById("nombre").value == ""){
-//         isValid = false;
-//         // document.getElementById("Error").classList.remove("hide");
-//     } else{
-//         isValid = true;
-//         // if(!document.getElementById("Error").classList.contains("hide"))
-//         //     document.getElementById("Error").classList.add("hide");
-//     }
-//     return isValid;
-// }
+
 
 // -------------------------------------------------------------------------------------
 
 // BOTON DE CONFIRMACION Y CANCELACION DE PAGO
 
-let buttonClicked = null;
-let activeToast = null;
+// let buttonClicked = null;
+// let activeToast = null;
 
-const btnClickeado = (valor) => {
-    if (activeToast) {
-        activeToast.hide();
-        activeToast = null;
-    };
-    buttonClicked = valor;
-    confirmar();
-};
+// const btnClickeado = (valor) => {
+//     if (activeToast) {
+//         activeToast.hide();
+//         activeToast = null;
+//     };
+//     buttonClicked = valor;
+//     confirmar();
+// };
 
-const confirmar = () => {
-    let modal = document.getElementById("exampleModal");
-    let bsModal = bootstrap.Modal.getInstance(modal);
-    bsModal.hide();
+// const confirmar = () => {
+//     let modal = document.getElementById("exampleModal");
+//     let bsModal = bootstrap.Modal.getInstance(modal);
+//     bsModal.hide();
 
-    if (buttonClicked === "confirmar") {
-        let toast = document.getElementById("confirmarPago");
-        var bsToast = new bootstrap.Toast(toast);
-    } else if (buttonClicked === "anular") {
-        let toast = document.getElementById("anularPago");
-        var bsToast = new bootstrap.Toast(toast);
-    };
-    bsToast.show();
-    activeToast = bsToast;
-};
+//     if (buttonClicked === "confirmar") {
+//         let toast = document.getElementById("confirmarPago");
+//         var bsToast = new bootstrap.Toast(toast);
+//     } else if (buttonClicked === "anular") {
+//         let toast = document.getElementById("anularPago");
+//         var bsToast = new bootstrap.Toast(toast);
+//     };
+//     bsToast.show();
+//     activeToast = bsToast;
+// };

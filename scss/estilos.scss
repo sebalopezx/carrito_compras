@@ -52,17 +52,22 @@ h1,a{
 
 
 // NAVEGADOR LINKS
-.nav-link,footer{
+.navbar,button i{
     color: $texto;
 }
-.nav-link:hover{
+.navbar-nav .nav-link,footer{
+    color: $texto;
+}
+.navbar-nav .nav-link:hover{
     transition: .5s;
     color: darken($principal,1%) !important;
+}
+.navbar,button i.active{
+    color: lighten($principal, $amount: 15%) ;
 }
 .navbar-nav .nav-link.active {
     color: lighten($principal, $amount: 15%) ;
     // --bs-navbar-active-color: #6f14f1 ;
-
 }
 
 

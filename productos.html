@@ -24,12 +24,15 @@
                 <img src="images/logo2.JPG" alt="Logo" width="110px" height="50px" class="img-fluid ">
             </a>
 
-            <button type="button" class="navbar-toggler ms-auto p-2 px-3 mx-2" data-bs-toggle="collapse" data-bs-target="#menu-principal"  aria-expanded="false" aria-controls="menu-principal" aria-label="boton menu principal" >  
+            <button type="button" class="navbar-toggler ms-auto p-2 px-3 mx-2" data-bs-toggle="collapse" data-bs-target="#menu-principal" 
+            aria-expanded="false" aria-controls="menu-principal" aria-label="boton menu principal" >  
                 <i class="bi bi-list"></i>
             </button>
 
             <button type="button" class="navbar-toggler p-2 px-3 mx-2 position-relative"  aria-controls="carrito" aria-label="boton carrito">
-                <a href="carrito.html"><i class="bi bi-cart-fill"></i><span class="badge rounded-pill bg-secondary position-absolute start-100 translate-middle ">0</span></a>
+                <a href="carrito.html"><i class="bi bi-cart-fill"></i><span class="badgeMenu badge rounded-pill bg-secondary position-absolute start-100 translate-middle ">
+                    0
+                </span></a>
             </button>
 
             <div class="collapse navbar-collapse" id="menu-principal">
@@ -38,37 +41,40 @@
                     <li class="nav-item "><a href="productos.html" class="nav-link">Productos</a></li>
                     <li class="nav-item "><a href="nosotros.html" class="nav-link ">Nosotros</a></li>
                     <li class="nav-item d-none d-md-flex"><a href="carrito.html" class="nav-link position-relative">
-                        <i class="bi bi-cart-fill"></i> Ver Carrito <span class="badge rounded-pill bg-secondary position-absolute start-100 translate-middle">0</span></a></li>
+                        Ver Carrito <i class="bi bi-cart-fill"></i><span class="badgeMenu2 badge rounded-pill bg-secondary position-absolute start-100 translate-middle">
+                            0
+                        </span></a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- TITULO -->
-    <!-- <div class="container mt-5 p-3">
-        <h1 class="text-primary text-center">PRODUCTOS</h1>
-    </div> -->
 
     <br>
     <!-- ALERT DE CARRITO -->
-    <section class="container text-center p-2 p-sm-4 my-4 mt-2 border border-primary rounded shadow-lg bg-primary">
+    <section class="carrito container text-center p-2 p-sm-4 my-4 mt-2 border border-primary rounded shadow-lg bg-primary">
         <br>
-        <div class="col-12 col-sm-8 offset-0 offset-sm-2 alert alert-success"
-        id="alertCarrito"> 
-            <button class="btn-badge btn btn-info rounded-pill mb-2">
-                Ver Carrito <span id="badgeCarrito" class="badge bg-secondary">0</span>
-            </button>
+        <div class="alertCarrito col-12 col-sm-8 offset-0 offset-sm-2 alert alert-success" id="alertCarrito"> 
+            <a href="carrito.html">
+                <button id="btn-badge" class="btn btn-info rounded-pill mb-2">
+                    Ver Carrito <span id="badgeCarrito" class="badge bg-secondary">0</span>
+                </button>
+            </a>
             <p>Total del carrito: <strong>$0</strong></p>
         </div>
 
         <!-- LISTADO DE PRODUCTOS -->
         <h1 class="text-light text-center mb-4" id="">Comestibles</h1>
-        <section id="comestibles" class="row g-3"></section>   
+        <section id="comestibles" class="row g-3">
+            <!-- ARTICUOS CREADOS EN JS -->
+        </section>   
 
-         <!-- BEBESTIBLES -->
+         <!-- LISTADO DE BEBESTIBLES -->
         <h1 class="text-light text-center mb-4" id="">Bebestibles</h1>
-        <section id="bebestibles" class="row g-3"></section>   
-            <!-- <section id="comestibles" class="row g-3"></section> -->          
+        <section id="bebestibles" class="row g-3">
+            <!-- ARTICUOS CREADOS EN JS -->
+        </section>   
+         
 
     </section>
 
