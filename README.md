@@ -1,7 +1,7 @@
 # Portafolio: "Sebastián López"
 `<link>` : <https://sebalopezx.github.io/carrito-compras/>
 
-<img src="https://github.com/sebalopezx/carrito-compras/blob/master/images/m.JPEG" alt="Logo del proyecto" width="60" height="60">
+<img src="https://github.com/sebalopezx/carrito-compras/blob/master/images/logo2.JPG" alt="Logo del proyecto" width="60" height="60">
 
 
 ![Static Badge](https://img.shields.io/badge/Creador-Sebasti%C3%A1n_L%C3%B3pez-%23842ee3) ![Static Badge](https://img.shields.io/badge/Versi%C3%B3n-1.0-%23842ee3)
