@@ -1,4 +1,4 @@
-# Portafolio: "Sebastián López"
+# Proyecto: "Carrito de Compras"
 `<link>` : <https://sebalopezx.github.io/carrito-compras/>
 
 <img src="https://github.com/sebalopezx/carrito_compras/blob/master/images/logo2.JPG" alt="Logo del proyecto" width="120" height="60">
